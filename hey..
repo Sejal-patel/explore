@@ -1,0 +1,8 @@
+Intoroduction 
+---------------
+The little piece of code is written to traverse through multiple text files inside a directory to read and fetch the 
+telephone numbers present in Indian format like +919964646208 or 09845359710, etc.. The fetched numbers are then written into 
+a different file.
+
+Code to fetch the numbers from multiple text files.
+---------------------------------------------------
