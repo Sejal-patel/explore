@@ -6,3 +6,62 @@ a different file.
 
 Code to fetch the numbers from multiple text files.
 ---------------------------------------------------
+```Java Code
+package 
+import java.util.regex.*;
+import java.io.*;
+public class FileNameMobileNoExtractor 
+{
+	public static void main(String[] args) throws Exception
+  {
+			Pattern p1=Pattern.compile("(0|91)?[7-9][0-9]{9}");
+			Pattern p=Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9_$.]*[.]txt");
+			File f=new File(".");
+			String[]s=f.list();
+      for(String s1:s)
+				{
+					Matcher m=p.matcher(s1);
+					if(m.find()&&m.group().equals(s1))
+					{
+							BufferedReader br=new BufferedReader(new FileReader(s1));
+							String line=br.readLine();
+							while(line!=null)
+							{
+								Matcher m1=p1.matcher(line);
+								while(m1.find())
+								{
+									System.out.println(m1.group());
+								}
+								line=br.readLine();
+							}
+						
+					}
+				}
+	}
+
+}
+End of code```
+
+Output:
+------------
++919709985240
+9570737216
+08013566748
+09430008783
+
+Processing of Code
+------------------
+* Using Pattern p1, telephone no.(regular expression) format is set.
+* Using Pattern p, text file with .txt extension in the directory is set.
+* File object in line #9 is created in which the '.' operator gives the current working directory path.
+* In line #20 the text files are stored in the String array in the list form, so that the files can be fetched one by one.
+* m.find() method is used to find the substring from the main string s1(file name) that matches the pattern set for the file,
+  and returns true value if the substring matching the pattern is found.
+* m.group() returns the substring, that is matching the pattern, is found. equals() is used to find if the file name returned by 
+  m.group method is same as contained by s1 String object, returns true if matched.
+* BufferedReader object is used to read the contents in the file.
+* br.readLine() fetches the next line to be read.
+* In line #31 the telephone number matching the pattern is found, if true then enters the loop and using s.o.p(m.group), the telephone
+  no. is printed in the Console.
+* the loop continues to find the telephone no. from all the files untill line becomes null.
+
